@@ -1,6 +1,8 @@
 export type Category = 'School Furniture' | 'Educational Materials' | 'Kitchen Collection' | 'Wooden Toys'
 export interface Review { id:number; name:string; rating:number; date:string; text:string }
-export interface Product { id:string; name:string; category:Category; price:number; oldPrice?:number; image:string; rating:number; description:string; details:string[]; badge?:string; reviews:Review[] }
+export interface Product {
+    categoryLabel: string; id:string; name:string; category:Category; price:number; oldPrice?:number; image:string; rating:number; description:string; details:string[]; badge?:string; reviews:Review[] 
+}
 const img=(name:string)=>`/assets/img/${name}`
 export const CATEGORIES = [
  {name:'School Furniture' as Category, blurb:'Desks, chairs and shelving built for classrooms that last.', image:img('desk-chair.jpg')},
@@ -9,18 +11,60 @@ export const CATEGORIES = [
  {name:'Wooden Toys' as Category, blurb:'Open-ended heirlooms for toddlers, infants and curious hands.', image:img('rainbow-stacker.jpg')}
 ]
 export const PRODUCTS: Product[] = [
- {id:'heritage-desk-chair',name:'Heritage Student Desk & Chair',category:'School Furniture',price:289,oldPrice:340,image:img('desk-chair.jpg'),rating:4.9,badge:'Bestseller',description:'A solid beech student desk and chair set, hand-finished with child-safe natural oils. Designed for schools that value furniture which outlives trends.',details:['Solid European beech','Child-safe linseed oil finish','Rounded, splinter-free edges','Ages 5–12','Bulk pricing for schools'],reviews:[{id:1,name:'Ayesha R. — Lahore Grammar School',rating:5,date:'2026-06-14',text:'We furnished two classrooms with these. The build quality is exceptional and the children love them.'},{id:2,name:'Marcus T.',rating:5,date:'2026-05-02',text:'Beautiful joinery. Feels like furniture from another era — in the best way.'}]},
- {id:'montessori-classroom-shelf',name:'Montessori Open Classroom Shelf',category:'School Furniture',price:349,image:img('classroom-shelf.jpg'),rating:4.8,description:'A low, open-front hardwood shelf designed to Montessori principles — every material visible, reachable and inviting for independent young learners.',details:['Solid birch ply & beech frame','Child-height open access','Anti-tip wall anchors included','Wipeable natural finish'],reviews:[{id:1,name:'Hira Montessori House',rating:5,date:'2026-04-21',text:'Exactly to AMI classroom spec. Our guides are delighted.'}]},
- {id:'montessori-letter-bead-set',name:'Montessori Letter & Bead Stair Set',category:'Educational Materials',price:94,oldPrice:120,image:img('montessori-materials.jpg'),rating:4.9,badge:'Schools’ Choice',description:'A complete early-literacy and numeracy set: letter boards, coloured bead stair and a dovetailed storage box — all in natural hardwood.',details:['26 letter boards + bead stair','Dovetailed hardwood storage box','Non-toxic water-based colours','Ages 3–6'],reviews:[{id:1,name:'Sana K. — Roots School',rating:5,date:'2026-06-30',text:'We ordered 12 sets for our EYFS wing. Superb finish, zero rough edges.'},{id:2,name:'Daniel O.',rating:4,date:'2026-03-11',text:'Beautiful set. Box hinges feel very sturdy.'}]},
- {id:'classic-counting-abacus',name:'Classic Counting Abacus',category:'Educational Materials',price:42,image:img('abacus.jpg'),rating:4.7,description:'A 100-bead hardwood abacus that makes early maths tangible. Smooth-gliding beads in gentle colours on a rock-solid maple frame.',details:['Solid maple frame','100 smooth-glide beads','Non-toxic stains','Ages 3+'],reviews:[{id:1,name:'Mrs. Farah N.',rating:5,date:'2026-05-18',text:'My classroom abacuses survive daily use by 6-year-olds. That says everything.'}]},
- {id:'olive-utensil-set',name:'Olive Wood 7-Piece Utensil Set',category:'Kitchen Collection',price:79,oldPrice:98,image:img('utensil-set.jpg'),rating:5,badge:'Bestseller',description:'Seven hand-carved olive wood utensils — a beautiful, tactile replacement for plastic.',details:['100% solid olive wood','Food-safe, hand-wash only','Naturally antibacterial','Each piece unique in grain'],reviews:[{id:1,name:'Amara S.',rating:5,date:'2026-07-02',text:'Stunning. They look like art on my counter and feel wonderful in hand.'},{id:2,name:'James W.',rating:5,date:'2026-06-09',text:'Bought as a gift; ended up ordering a second set for myself.'}]},
- {id:'walnut-cutting-board',name:'End-Grain Walnut Cutting Board',category:'Kitchen Collection',price:68,image:img('cutting-board.jpg'),rating:4.8,description:'A hefty end-grain walnut board that is gentle on knife edges and ages beautifully.',details:['American black walnut','End-grain — kind to knives','Juice groove & hand holds','Food-safe mineral oil finish'],reviews:[{id:1,name:'Chef Bilal M.',rating:5,date:'2026-04-15',text:'This is the board I reach for every service. Superb weight and finish.'}]},
- {id:'two-tone-bowl-set',name:'Two-Tone Serving Bowl Set of 6',category:'Kitchen Collection',price:115,image:img('bowl-set.jpg'),rating:4.9,description:'Six hand-turned bowls in contrasting hardwoods, from prep to serving.',details:['Rosewood & maple contrast','Hand-turned, food-safe lacquer','Nested storage','6 sizes'],reviews:[{id:1,name:'Natasha P.',rating:5,date:'2026-05-27',text:'Guests always ask where these are from. Worth every penny.'}]},
- {id:'rainbow-stacker',name:'Grand Rainbow Stacker — 12 Arches',category:'Wooden Toys',price:54,oldPrice:68,image:img('rainbow-stacker.jpg'),rating:4.9,badge:'Bestseller',description:'Twelve hand-sanded linden arches in rich, water-based colours for open-ended play.',details:['Sustainably harvested linden','EN-71 certified colours','12 nesting arches','Ages 1.5+'],reviews:[{id:1,name:'Zoya A.',rating:5,date:'2026-07-10',text:'My twins play with it daily. Beautiful enough to leave on the shelf as decor.'},{id:2,name:'Emily R.',rating:5,date:'2026-02-19',text:'Heirloom quality. Will be passed down.'}]},
- {id:'natural-building-blocks',name:'Natural Building Blocks — 60 Pieces',category:'Wooden Toys',price:76,image:img('building-blocks.jpg'),rating:4.8,description:'Sixty precision-cut beech blocks in arches, columns, triangles and cubes.',details:['Solid beech, unfinished','60 precision pieces','Splinter-free hand sanding','Ages 2+'],reviews:[{id:1,name:'Hassan & Co. Preschool',rating:5,date:'2026-06-01',text:'We bought four sets. The precision of the cuts makes towers genuinely stable.'}]},
- {id:'little-carpenter-toolbox',name:'Little Carpenter Toolbox',category:'Wooden Toys',price:48,image:img('tool-set.jpg'),rating:4.7,description:'A dovetailed wooden toolbox with hammer, wrench, screwdriver, nuts, bolts and panels.',details:['18 wooden pieces','Dovetailed carry box','Develops fine motor skills','Ages 3+'],reviews:[{id:1,name:'Rabia F.',rating:5,date:'2026-05-23',text:'My son “fixes” everything in the house now. Adorable and very well made.'}]},
- {id:'first-year-baby-kit',name:'First Year Montessori Baby Kit',category:'Wooden Toys',price:88,image:img('baby-kit.jpg'),rating:5,badge:'New Parents’ Favourite',description:'Six developmentally sequenced wooden toys for infants 0–12 months.',details:['6 developmental toys','Untreated natural hardwood','Mouth-safe finishes only','Ages 0–12 months'],reviews:[{id:1,name:'Dr. Mahnoor S.',rating:5,date:'2026-06-25',text:'As a paediatrician and a mother — this kit gets development right.'},{id:2,name:'Chris D.',rating:5,date:'2026-04-05',text:'The baby shower gift everyone talked about.'}]},
- {id:'cow-teether-rattle',name:'Natural Cow Teether Rattle',category:'Wooden Toys',price:18,image:img('teether.jpg'),rating:4.9,description:'A smooth natural hardwood teether and gentle rattle for little hands.',details:['Untreated hardwood','Food-safe finish','Easy-grip silhouette','Ages 0+'],reviews:[]},
- {id:'wooden-toy-car',name:'Heirloom Wooden Toy Car',category:'Wooden Toys',price:32,image:img('toy-car.jpg'),rating:4.8,description:'A simple, sturdy wooden car designed for small hands and big imaginations.',details:['Solid hardwood','Rounded edges','Water-based finish','Ages 18 months+'],reviews:[]},
- {id:'branch-blocks',name:'Branch Blocks — Nature Set',category:'Wooden Toys',price:58,image:img('branch-blocks.jpg'),rating:4.8,description:'Irregular branch pieces that invite children to build with nature’s own geometry.',details:['Natural branch wood','Unique shapes','Hand sanded','Ages 3+'],reviews:[]},
+ {
+     id: 'heritage-desk-chair', name: 'Heritage Student Desk & Chair', category: 'School Furniture', price: 289, oldPrice: 340, image: img('desk-chair.jpg'), rating: 4.9, badge: 'Bestseller', description: 'A solid beech student desk and chair set, hand-finished with child-safe natural oils. Designed for schools that value furniture which outlives trends.', details: ['Solid European beech', 'Child-safe linseed oil finish', 'Rounded, splinter-free edges', 'Ages 5–12', 'Bulk pricing for schools'], reviews: [{ id: 1, name: 'Ayesha R. — Lahore Grammar School', rating: 5, date: '2026-06-14', text: 'We furnished two classrooms with these. The build quality is exceptional and the children love them.' }, { id: 2, name: 'Marcus T.', rating: 5, date: '2026-05-02', text: 'Beautiful joinery. Feels like furniture from another era — in the best way.' }],
+     categoryLabel: ""
+ },
+ {
+     id: 'montessori-classroom-shelf', name: 'Montessori Open Classroom Shelf', category: 'School Furniture', price: 349, image: img('classroom-shelf.jpg'), rating: 4.8, description: 'A low, open-front hardwood shelf designed to Montessori principles — every material visible, reachable and inviting for independent young learners.', details: ['Solid birch ply & beech frame', 'Child-height open access', 'Anti-tip wall anchors included', 'Wipeable natural finish'], reviews: [{ id: 1, name: 'Hira Montessori House', rating: 5, date: '2026-04-21', text: 'Exactly to AMI classroom spec. Our guides are delighted.' }],
+     categoryLabel: ""
+ },
+ {
+     id: 'montessori-letter-bead-set', name: 'Montessori Letter & Bead Stair Set', category: 'Educational Materials', price: 94, oldPrice: 120, image: img('montessori-materials.jpg'), rating: 4.9, badge: 'Schools’ Choice', description: 'A complete early-literacy and numeracy set: letter boards, coloured bead stair and a dovetailed storage box — all in natural hardwood.', details: ['26 letter boards + bead stair', 'Dovetailed hardwood storage box', 'Non-toxic water-based colours', 'Ages 3–6'], reviews: [{ id: 1, name: 'Sana K. — Roots School', rating: 5, date: '2026-06-30', text: 'We ordered 12 sets for our EYFS wing. Superb finish, zero rough edges.' }, { id: 2, name: 'Daniel O.', rating: 4, date: '2026-03-11', text: 'Beautiful set. Box hinges feel very sturdy.' }],
+     categoryLabel: ""
+ },
+ {
+     id: 'classic-counting-abacus', name: 'Classic Counting Abacus', category: 'Educational Materials', price: 42, image: img('abacus.jpg'), rating: 4.7, description: 'A 100-bead hardwood abacus that makes early maths tangible. Smooth-gliding beads in gentle colours on a rock-solid maple frame.', details: ['Solid maple frame', '100 smooth-glide beads', 'Non-toxic stains', 'Ages 3+'], reviews: [{ id: 1, name: 'Mrs. Farah N.', rating: 5, date: '2026-05-18', text: 'My classroom abacuses survive daily use by 6-year-olds. That says everything.' }],
+     categoryLabel: ""
+ },
+ {
+     id: 'olive-utensil-set', name: 'Olive Wood 7-Piece Utensil Set', category: 'Kitchen Collection', price: 79, oldPrice: 98, image: img('utensil-set.jpg'), rating: 5, badge: 'Bestseller', description: 'Seven hand-carved olive wood utensils — a beautiful, tactile replacement for plastic.', details: ['100% solid olive wood', 'Food-safe, hand-wash only', 'Naturally antibacterial', 'Each piece unique in grain'], reviews: [{ id: 1, name: 'Amara S.', rating: 5, date: '2026-07-02', text: 'Stunning. They look like art on my counter and feel wonderful in hand.' }, { id: 2, name: 'James W.', rating: 5, date: '2026-06-09', text: 'Bought as a gift; ended up ordering a second set for myself.' }],
+     categoryLabel: ""
+ },
+ {
+     id: 'walnut-cutting-board', name: 'End-Grain Walnut Cutting Board', category: 'Kitchen Collection', price: 68, image: img('cutting-board.jpg'), rating: 4.8, description: 'A hefty end-grain walnut board that is gentle on knife edges and ages beautifully.', details: ['American black walnut', 'End-grain — kind to knives', 'Juice groove & hand holds', 'Food-safe mineral oil finish'], reviews: [{ id: 1, name: 'Chef Bilal M.', rating: 5, date: '2026-04-15', text: 'This is the board I reach for every service. Superb weight and finish.' }],
+     categoryLabel: ""
+ },
+ {
+     id: 'two-tone-bowl-set', name: 'Two-Tone Serving Bowl Set of 6', category: 'Kitchen Collection', price: 115, image: img('bowl-set.jpg'), rating: 4.9, description: 'Six hand-turned bowls in contrasting hardwoods, from prep to serving.', details: ['Rosewood & maple contrast', 'Hand-turned, food-safe lacquer', 'Nested storage', '6 sizes'], reviews: [{ id: 1, name: 'Natasha P.', rating: 5, date: '2026-05-27', text: 'Guests always ask where these are from. Worth every penny.' }],
+     categoryLabel: ""
+ },
+ {
+     id: 'rainbow-stacker', name: 'Grand Rainbow Stacker — 12 Arches', category: 'Wooden Toys', price: 54, oldPrice: 68, image: img('rainbow-stacker.jpg'), rating: 4.9, badge: 'Bestseller', description: 'Twelve hand-sanded linden arches in rich, water-based colours for open-ended play.', details: ['Sustainably harvested linden', 'EN-71 certified colours', '12 nesting arches', 'Ages 1.5+'], reviews: [{ id: 1, name: 'Zoya A.', rating: 5, date: '2026-07-10', text: 'My twins play with it daily. Beautiful enough to leave on the shelf as decor.' }, { id: 2, name: 'Emily R.', rating: 5, date: '2026-02-19', text: 'Heirloom quality. Will be passed down.' }],
+     categoryLabel: ""
+ },
+ {
+     id: 'natural-building-blocks', name: 'Natural Building Blocks — 60 Pieces', category: 'Wooden Toys', price: 76, image: img('building-blocks.jpg'), rating: 4.8, description: 'Sixty precision-cut beech blocks in arches, columns, triangles and cubes.', details: ['Solid beech, unfinished', '60 precision pieces', 'Splinter-free hand sanding', 'Ages 2+'], reviews: [{ id: 1, name: 'Hassan & Co. Preschool', rating: 5, date: '2026-06-01', text: 'We bought four sets. The precision of the cuts makes towers genuinely stable.' }],
+     categoryLabel: ""
+ },
+ {
+     id: 'little-carpenter-toolbox', name: 'Little Carpenter Toolbox', category: 'Wooden Toys', price: 48, image: img('tool-set.jpg'), rating: 4.7, description: 'A dovetailed wooden toolbox with hammer, wrench, screwdriver, nuts, bolts and panels.', details: ['18 wooden pieces', 'Dovetailed carry box', 'Develops fine motor skills', 'Ages 3+'], reviews: [{ id: 1, name: 'Rabia F.', rating: 5, date: '2026-05-23', text: 'My son “fixes” everything in the house now. Adorable and very well made.' }],
+     categoryLabel: ""
+ },
+ {
+     id: 'first-year-baby-kit', name: 'First Year Montessori Baby Kit', category: 'Wooden Toys', price: 88, image: img('baby-kit.jpg'), rating: 5, badge: 'New Parents’ Favourite', description: 'Six developmentally sequenced wooden toys for infants 0–12 months.', details: ['6 developmental toys', 'Untreated natural hardwood', 'Mouth-safe finishes only', 'Ages 0–12 months'], reviews: [{ id: 1, name: 'Dr. Mahnoor S.', rating: 5, date: '2026-06-25', text: 'As a paediatrician and a mother — this kit gets development right.' }, { id: 2, name: 'Chris D.', rating: 5, date: '2026-04-05', text: 'The baby shower gift everyone talked about.' }],
+     categoryLabel: ""
+ },
+ {
+     id: 'cow-teether-rattle', name: 'Natural Cow Teether Rattle', category: 'Wooden Toys', price: 18, image: img('teether.jpg'), rating: 4.9, description: 'A smooth natural hardwood teether and gentle rattle for little hands.', details: ['Untreated hardwood', 'Food-safe finish', 'Easy-grip silhouette', 'Ages 0+'], reviews: [],
+     categoryLabel: ""
+ },
+ {
+     id: 'wooden-toy-car', name: 'Heirloom Wooden Toy Car', category: 'Wooden Toys', price: 32, image: img('toy-car.jpg'), rating: 4.8, description: 'A simple, sturdy wooden car designed for small hands and big imaginations.', details: ['Solid hardwood', 'Rounded edges', 'Water-based finish', 'Ages 18 months+'], reviews: [],
+     categoryLabel: ""
+ },
+ {
+     id: 'branch-blocks', name: 'Branch Blocks — Nature Set', category: 'Wooden Toys', price: 58, image: img('branch-blocks.jpg'), rating: 4.8, description: 'Irregular branch pieces that invite children to build with nature’s own geometry.', details: ['Natural branch wood', 'Unique shapes', 'Hand sanded', 'Ages 3+'], reviews: [],
+     categoryLabel: ""
+ },
 ]
