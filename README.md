@@ -1,31 +1,41 @@
-# Grain & Grid — Next.js Ecommerce
+# Grain & Grid — E-commerce Front End (Prototype)
 
-Converted from the supplied Kimi Vite/React mockup into a Next.js App Router project.
+A front-end-only Next.js storefront built to give the client something real
+to react to. No backend / payments are wired up — the "Place Order" button
+produces a polished confirmation screen instead of processing a transaction.
 
-## Stack
-- Next.js + TypeScript
-- Tailwind CSS
-- Zustand persistence for cart, reviews and local prototype orders
-- Framer Motion dependency ready for interaction polish
-- Lucide React icons
-- Client-supplied Grain & Grid logo and product imagery
+## Run it
 
-## Run
 ```bash
 npm install
 npm run dev
 ```
 
-Open http://localhost:3000
+Then open http://localhost:3000
 
-## Routes
-- `/` homepage
-- `/shop` product collection, search, category filters and sorting
-- `/product/[id]` product detail, reviews and cart actions
-- `/cart` shopping cart
-- `/checkout` order form with COD / bank transfer
-- `/about` brand story
-- `/contact` enquiry form
+## Stack
 
-## Important
-This is intentionally a frontend prototype. Orders, reviews and cart state persist in the browser using Zustand/localStorage. No real payment gateway, email service or database is connected yet.
+- Next.js 16 (App Router) + TypeScript
+- Tailwind CSS v4 (design tokens in `app/globals.css`)
+- Cart & wishlist state in `context/store-context.tsx`, persisted to
+  localStorage so it survives a page refresh
+- Mock catalog data in `lib/data.ts` — 18 products across your 4 categories,
+  each with specs, badges and sample reviews. Swap in real data/CMS later.
+- Product visuals are custom line-art icons (`components/product-art.tsx`)
+  rather than stock photos — swap in real product photography per item
+  when it's available; each product already has an `art` key you can map
+  an image to instead.
+
+## Pages
+
+/, /shop (filters + sort), /product/[slug] (gallery, tabs, reviews),
+/cart, /checkout (order form: name, email, phone, address, city, area,
+postal code, country, COD/bank payment), /order-confirmation, /about,
+/contact, /schools (B2B quote form), /custom (bespoke project form),
+/wishlist.
+
+## Brand
+
+Colors and type are pulled from the Grain & Grid logo — see the CSS
+variables at the top of `app/globals.css` (`--wood`, `--sage`, `--cream`,
+`--ink`) if the client wants to adjust the palette.
